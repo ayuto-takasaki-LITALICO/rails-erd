@@ -36,10 +36,14 @@ module RailsERD
         graph << "\t`#{from.name}` #{relation_arrow(relationship)} `#{to.name}`"
 
         from.children.each do |child|
+          next unless node_exists?(child)
+
           graph << "\t`#{child.name}` #{relation_arrow(relationship)} `#{to.name}`"
         end
 
         to.children.each do |child|
+          next unless node_exists?(child)
+
           graph << "\t`#{from.name}` #{relation_arrow(relationship)} `#{child.name}`"
         end
       end
